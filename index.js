@@ -10,7 +10,7 @@ dotenv.config()
 async function connectDB() {
     try {
 
-        await mongoose.connect("mongodb+srv://mshehroz735:shahroz@cluster0.omenb.mongodb.net/StoreJewellery")
+        await mongoose.connect(process.env.MONGODB_URL)
         console.log('database connected')
 
     } catch (error) {
