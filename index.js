@@ -1,11 +1,26 @@
 const express = require('express')
 const dotenv = require("dotenv");
-const productmodel = require('./model/product')
-const connectDB = require('./dbconnection/connection')
+const productmodel = require('./model/product');
+const { default: mongoose } = require('mongoose');
+
 let app = express();
 app.use(express.json());
 dotenv.config()
-connectDB();
+
+async function connectDB() {
+    try {
+
+        await mongoose.connect("mongodb+srv://mshehroz735:shahroz@cluster0.omenb.mongodb.net/StoreJewellery")
+        console.log('database connected')
+
+    } catch (error) {
+        console.log('database connection failed')
+        console.log(error);
+        
+    }
+}
+
+connectDB()
 
 
 app.post('/addproduct',async (req,res)=>{
