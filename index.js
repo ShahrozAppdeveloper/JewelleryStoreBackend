@@ -1,24 +1,13 @@
 const express = require('express')
 const dotenv = require("dotenv");
 const productmodel = require('./model/product');
-const { default: mongoose } = require('mongoose');
+const connectDB = require ('./dbconnection/connection')
 
 let app = express();
 app.use(express.json());
 dotenv.config()
 
-async function connectDB() {
-    try {
 
-        await mongoose.connect(process.env.MONGODB_URL)
-        console.log('database connected')
-
-    } catch (error) {
-        console.log('database connection failed')
-        console.log(error);
-        
-    }
-}
 
 connectDB()
 
