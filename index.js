@@ -14,12 +14,12 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Connect to Database
+// Connect to Databases
 connectDB();
 
 // Use Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/products', productRoutes); // Consistent naming for product routes
+app.use('/api/products', productRoutes); 
 
 // Start the server
 app.listen(8000, () => {
