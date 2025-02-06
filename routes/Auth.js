@@ -57,7 +57,7 @@ router.post('/signin', async (req, res) => {
         if (!emailRegex.test(email)) {
             return res.status(400).json({ success: false, message: 'Invalid email format' });
         }
-        
+
         const user = await User.findOne({ email });
         if (!user) {
             return res.status(400).json({ success: false, message: 'Invalid email or password' });
@@ -69,7 +69,7 @@ router.post('/signin', async (req, res) => {
         }
 
         // Generate JWT Token
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ id: user._id }, process.env.jwtprivatekey, { expiresIn: '1h' });
 
         res.status(200).json({
             success: true,
