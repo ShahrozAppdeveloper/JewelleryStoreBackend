@@ -15,6 +15,12 @@ router.post('/signup', async (req, res) => {
         if (!username || !email || !password) {
             return res.status(400).json({ success: false, message: 'All fields are required' });
         }
+         
+        // Validate Email Format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return res.status(400).json({ success: false, message: 'Invalid email format' });
+        }
 
         const existingUser = await User.findOne({ email });
         if (existingUser) {
@@ -45,7 +51,13 @@ router.post('/signin', async (req, res) => {
         if (!email || !password) {
             return res.status(400).json({ success: false, message: 'All fields are required' });
         }
-
+        
+        // Validate Email Format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return res.status(400).json({ success: false, message: 'Invalid email format' });
+        }
+        
         const user = await User.findOne({ email });
         if (!user) {
             return res.status(400).json({ success: false, message: 'Invalid email or password' });
