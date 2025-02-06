@@ -9,8 +9,23 @@ const productschema = new mongoose.Schema({
     price : {
         type : String ,
         required : true
-     }
+     },
+
+     imageurl : {
+         type : String ,
+         required : true
+     },
+     description : {
+      type : String,
+      required : true
+     },
      
+     category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Category', 
+      required: true
+  }
+
 },
  {
    timestamps : true

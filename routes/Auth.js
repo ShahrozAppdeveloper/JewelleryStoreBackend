@@ -86,7 +86,15 @@ router.post('/signin', async (req, res) => {
 
 // Forgot Password
 router.post('/forgotpassword', async (req, res) => {
-    res.json({ success: false, message: "Feature coming soon!" });
+    const {email} = req.body
+
+    if(!email){
+     return  res.status(400).json({
+          success : false ,
+          message : 'Email is required'
+        })
+    }
+     
 });
 
 module.exports = router;
